@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Newsaholics</string>
+    <string name="title">Title</string>
+    <string name="section">Section</string>
+    <string name="authors">Authors</string>
+    <string name="publication_date">Publication Date</string>
+    <string name="search">Search</string>
+    <string name="no_internet">No internet connection.</string>
+    <string name="no_books">No news found.</string>
+    <string name="search_result">Search result for</string>
+
+    <!-- Settings Menu Item [CHAR LIMIT=NONE] -->
+    <string name="settings_menu_item">Settings</string>
+    <!-- Settings Activity Title [CHAR LIMIT=NONE] -->
+    <string name="settings_title">Newsaholics Settings</string>
+
+    <string name="settings_topic_label">News Topic</string>
+    <string name="settings_topic_key" translatable="false">news_topic</string>
+    <string name="settings_topic_default" translatable="false">debates</string>
 </resources>

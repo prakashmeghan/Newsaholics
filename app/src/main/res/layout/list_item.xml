@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingEnd="@dimen/cell_horizontal_padding"
+    android:paddingLeft="@dimen/cell_horizontal_padding"
+    android:paddingRight="@dimen/cell_horizontal_padding"
+    android:paddingStart="@dimen/cell_horizontal_padding">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="16sp"
+        tools:text="@string/title"
+        android:layout_marginTop="@dimen/cell_element_top_margin"
+        />
+
+    <TextView
+        android:id="@+id/tv_section"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="2"
+        android:textSize="12sp"
+        tools:text="@string/section"
+        android:layout_marginTop="@dimen/cell_element_top_margin"/>
+
+    <TextView
+        android:id="@+id/tv_authors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="2"
+        android:textSize="12sp"
+        tools:text="@string/authors"
+        android:layout_marginTop="@dimen/cell_element_top_margin"/>
+
+    <TextView
+        android:id="@+id/tv_publication"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="1"
+        android:textSize="12sp"
+        tools:text="@string/publication_date"
+        android:layout_marginTop="@dimen/cell_element_top_margin"/>
+
+</LinearLayout>
