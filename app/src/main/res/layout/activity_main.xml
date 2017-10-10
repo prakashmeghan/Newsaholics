@@ -14,7 +14,8 @@
         android:paddingEnd="@dimen/cell_horizontal_padding"
         android:paddingLeft="@dimen/cell_horizontal_padding"
         android:paddingRight="@dimen/cell_horizontal_padding"
-        android:paddingStart="@dimen/cell_horizontal_padding" />
+        android:paddingStart="@dimen/cell_horizontal_padding"
+        android:textColor="@color/colorPrimary" />
 
 
     <android.support.v7.widget.RecyclerView

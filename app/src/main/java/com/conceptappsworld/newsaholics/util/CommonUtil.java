@@ -66,7 +66,7 @@ public class CommonUtil {
                 Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem retrieving the book JSON results.", e);
+            Log.e(LOG_TAG, "Problem retrieving the news JSON results.", e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -105,20 +105,12 @@ public class CommonUtil {
      */
     public static List<News> extractFeatureFromJson(String newsJson) {
 
-        /*
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        */
-
         // If the JSON string is empty or null, then return early.
         if (TextUtils.isEmpty(newsJson)) {
             return null;
         }
 
-        // Create an empty ArrayList that we can start adding books to
+        // Create an empty ArrayList that we can start adding news to
         List<News> newses = new ArrayList<News>();
 
         // Try to parse the JSON response string. If there's a problem with the way the JSON
@@ -132,37 +124,39 @@ public class CommonUtil {
             JSONObject responseObj = baseJsonResponse.getJSONObject(ConstantUtil.NODE_RESPONSE);
 
             // Extract the JSONArray associated with the key called "items",
-            // which represents a list of items (or books).
+            // which represents a list of items (or news).
             JSONArray itemsArray = responseObj.getJSONArray(ConstantUtil.NODE_RESULTS);
 
-            // For each item in the itemsArray, create an {@link Book} object
+            // For each item in the itemsArray, create an {@link News} object
             for (int i = 0; i < itemsArray.length(); i++) {
-                // Get a single book at position i within the list of itemsArray
+                // Get a single News at position i within the list of itemsArray
                 JSONObject currentResult = itemsArray.getJSONObject(i);
 
-                // For a given book, extract the JSONObject associated with the
-                // key called "volumeInfo", which represents a list of all properties
-                // for that book.
-
                 String title = "";
-                // Extract the value for the key called "title"
+                // Extract the value for the key called "webTitle"
                 if (currentResult.has(ConstantUtil.NODE_WEBTITLE)) {
                     title = currentResult.getString(ConstantUtil.NODE_WEBTITLE);
                 }
 
                 String publicationDate = "";
-                // Extract the value for the key called "publisher"
+                // Extract the value for the key called "webPublicationDate"
                 if (currentResult.has(ConstantUtil.NODE_WEBPUBLICATIONDATE)) {
                     publicationDate = currentResult.getString(ConstantUtil.NODE_WEBPUBLICATIONDATE);
                 }
 
                 String sectionName = "";
-                // Extract the value for the key called "description"
+                // Extract the value for the key called "sectionName"
                 if (currentResult.has(ConstantUtil.NODE_SECTIONNAME)) {
                     sectionName = currentResult.getString(ConstantUtil.NODE_SECTIONNAME);
                 }
 
-                News news = new News(title, publicationDate, sectionName);
+                String webUrl = "";
+                // Extract the value for the key called "webUrl"
+                if (currentResult.has(ConstantUtil.NODE_WEBURL)) {
+                    webUrl = currentResult.getString(ConstantUtil.NODE_WEBURL);
+                }
+
+                News news = new News(title, publicationDate, sectionName, webUrl);
 
                 newses.add(news);
             }
@@ -171,22 +165,20 @@ public class CommonUtil {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
             // with the message from the exception.
-            Log.e("QueryUtils", "Problem parsing the book JSON results", e);
+            Log.e("QueryUtils", "Problem parsing the news JSON results", e);
         }
 
-        // Return the list of books
+        // Return the list of News
         return newses;
     }
 
-    public static String replace(String str) {
-        String[] words = str.split(" ");
-        StringBuilder sentence = new StringBuilder(words[0]);
+    public static String separateDate(String dateStr) {
+        String dateOnly = "";
+        String[] splitedDate = dateStr.split("T");
 
-        for (int i = 1; i < words.length; ++i) {
-            sentence.append("%20");
-            sentence.append(words[i]);
-        }
+        if (splitedDate.length > 0)
+            dateOnly = splitedDate[0];
 
-        return sentence.toString();
+        return dateOnly;
     }
 }

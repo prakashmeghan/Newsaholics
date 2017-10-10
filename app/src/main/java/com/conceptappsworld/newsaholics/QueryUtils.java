@@ -23,9 +23,9 @@ public final class QueryUtils {
     }
 
     /**
-     * Query the Google Book API and return a list of {@link News} objects.
+     * Query the Google News API and return a list of {@link News} objects.
      */
-    public static List<News> fetchBooksData(String requestUrl) {
+    public static List<News> fetchNewsData(String requestUrl) {
         // Create URL object
         URL url = CommonUtil.createUrl(requestUrl);
 
@@ -37,10 +37,10 @@ public final class QueryUtils {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        // Extract relevant fields from the JSON response and create a list of {@link Book}s
-        List<News> books = CommonUtil.extractFeatureFromJson(jsonResponse);
+        // Extract relevant fields from the JSON response and create a list of {@link News}s
+        List<News> newses = CommonUtil.extractFeatureFromJson(jsonResponse);
 
-        // Return the list of {@link Book}s
-        return books;
+        // Return the list of {@link News}s
+        return newses;
     }
 }
